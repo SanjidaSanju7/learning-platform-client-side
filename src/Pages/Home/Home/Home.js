@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import About from '../../About/About/About';
 import './Home.css'
 
 
@@ -26,6 +27,7 @@ const Home = () => {
             </div>
             <div className="relative w-full flex gap-4 py-6 overflow-x-auto">
             </div>
+            <About></About>
         </section>
 
     )
