@@ -7,6 +7,7 @@ const Courses = () => {
 
     const allCourse = useLoaderData()
 
+
     return (
         <div className='mt-8'>
             <div className="flex lg:flex-row sm:flex-col">

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 
 const CardDetails = () => {
 
@@ -14,10 +14,11 @@ const CardDetails = () => {
                     <h1 className="card-title text-3xl title">{name}</h1>
                     <p>{description}</p>
                     <div className="card-actions justify-end">
-                        <button className="btn btn-primary color-btn">Download PDF</button>
+                        <Link to='/checkout'><button className="btn btn-primary color-btn">Get Premium Access</button></Link>
                     </div>
                 </div>
             </div>
+
         </div>
     );
 };
