@@ -1,13 +1,19 @@
 import React, { useContext, useState } from 'react';
 import './Header.css'
 import { Link } from 'react-router-dom';
-import { FaGraduationCap } from "react-icons/fa";
+import { FaGraduationCap, FaUser } from "react-icons/fa";
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const Header = () => {
 
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => console.error(error))
+    }
 
     return (
 
@@ -78,12 +84,38 @@ const Header = () => {
                     </li>
                     <li>
                         <Link
-                            to="/"
-                            className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-                            aria-label="user"
-                            title="user"
+                            to=""
+                            aria-label="name"
+                            title="name"
+                            className="font-bold tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
                         >
-                            {user?.displayName}
+                            {
+                                user?.uid ?
+                                    <>
+                                        <span>{user?.displayName}</span>
+                                        <button onClick={handleLogOut} className="btn-sm bg-pink-800 rounded ml-3">Log out</button>
+                                    </>
+                                    :
+                                    <>
+                                        <Link to='/login'> Login</Link>
+                                        <Link to='/register' className='ml-3'>Register</Link>
+                                    </>
+                            }
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            to=""
+                            aria-label="user photo"
+                            title="user photo"
+                            className="font-bold tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
+                        >
+                            {user?.photoURL ?
+                                <img style={{ height: '30px' }}
+                                    src={user?.photoURL} alt=''>
+                                </img>
+                                : <FaUser></FaUser>
+                            }
                         </Link>
                     </li>
                 </ul>

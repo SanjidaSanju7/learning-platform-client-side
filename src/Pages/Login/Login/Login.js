@@ -1,9 +1,55 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import image from '../../../assets/images/login.jpg'
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
+import { GoogleAuthProvider } from "firebase/auth";
+
 
 const Login = () => {
+
+    const { providerLogin, signIn } = useContext(AuthContext);
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
+    const googleProvider = new GoogleAuthProvider();
+
+
+    const handleGoogleSignIn = () => {
+        providerLogin(googleProvider)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(error => {
+                console.error(error);
+            })
+
+    }
+
+
+
+    const handleSubmit = event => {
+        event.preventDefault();
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        signIn(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                form.reset();
+                setError('');
+                navigate('/checkout')
+
+            })
+            .catch(error => {
+                console.error(error)
+                setError(error.message)
+            })
+    }
+
+
+
     return (
 
         <div className="relative">
@@ -28,7 +74,7 @@ const Login = () => {
                                     Please Login for updates
                                 </h3>
 
-                                <form>
+                                <form onSubmit={handleSubmit}>
                                     <div className="mb-1 sm:mb-2">
                                         <label
                                             htmlFor="firstName"
@@ -62,6 +108,11 @@ const Login = () => {
                                         />
                                     </div>
                                     <div className="mt-4 mb-2 sm:mb-4">
+                                        <p className="text-xs text-red-500 sm:text-sm text-center">
+                                            {error}
+                                        </p>
+                                    </div>
+                                    <div className="mt-4 mb-2 sm:mb-4">
                                         <button
                                             type="submit"
                                             className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-stone-900 transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none color-btn"
@@ -73,7 +124,7 @@ const Login = () => {
                                         Login with social acoounts
                                     </p>
                                     <div className="mt-4 mb-2 sm:mb-4">
-                                        <button
+                                        <button onClick={handleGoogleSignIn}
                                             type="submit"
                                             className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-stone-900 transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none color-btn"
                                         >

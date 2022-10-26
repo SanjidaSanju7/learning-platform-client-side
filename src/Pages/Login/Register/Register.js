@@ -1,9 +1,38 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import image from '../../../assets/images/register.jpg'
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const Register = () => {
+
+
+    const [error, setError] = useState('');
+    const { createUser } = useContext(AuthContext);
+
+    const handleSubmit = event => {
+        event.preventDefault();
+        const form = event.target;
+        const name = form.name.value;
+        const photoURL = form.photoURL.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        console.log(name, photoURL, email, password);
+
+        createUser(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                form.reset();
+                setError('');
+            })
+            .catch(error => {
+                console.error(error)
+                setError(error.message)
+            });
+    }
+
+
     return (
         <div className="relative">
             <img
@@ -27,7 +56,7 @@ const Register = () => {
                                     Please Register
                                 </h3>
 
-                                <form>
+                                <form onSubmit={handleSubmit}>
 
                                     <div className="mb-1 sm:mb-2">
                                         <label
@@ -50,15 +79,15 @@ const Register = () => {
                                             htmlFor="firstName"
                                             className="inline-block mb-1 font-medium"
                                         >
-                                            Photo Url
+                                            Photo URL
                                         </label>
                                         <input
-                                            placeholder="Photo Url"
+                                            placeholder="PhotoURL"
                                             required
                                             type="text"
                                             className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
-                                            id="PhotoUrl"
-                                            name="PhotoUrl"
+                                            id="photoURL"
+                                            name="photoURL"
                                         />
                                     </div>
 
@@ -94,6 +123,11 @@ const Register = () => {
                                             id="password"
                                             name="password"
                                         />
+                                    </div>
+                                    <div className="mt-4 mb-2 sm:mb-4">
+                                        <p className="text-xs text-red-500 sm:text-sm text-center">
+                                            {error}
+                                        </p>
                                     </div>
                                     <div className="mt-4 mb-2 sm:mb-4">
                                         <button
