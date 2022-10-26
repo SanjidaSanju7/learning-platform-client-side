@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './Header.css'
 import { Link } from 'react-router-dom';
 import { FaGraduationCap } from "react-icons/fa";
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const Header = () => {
 
+    const { user } = useContext(AuthContext);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
@@ -26,8 +28,8 @@ const Header = () => {
                     <li>
                         <Link
                             to="/"
-                            aria-label="Our product"
-                            title="Our product"
+                            aria-label="home"
+                            title="home"
                             className="font-bold tracking-wide text-gray-700  transition-colors duration-200 hover:text-deep-purple-accent-400"
                         >
                             Home
@@ -78,13 +80,15 @@ const Header = () => {
                         <Link
                             to="/"
                             className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-                            aria-label="Sign up"
-                            title="Sign up"
+                            aria-label="user"
+                            title="user"
                         >
-                            Sign up
+                            {user?.displayName}
                         </Link>
                     </li>
                 </ul>
+
+                {/* for mobile responsive */}
 
                 <div className="lg:hidden">
                     <button

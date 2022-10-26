@@ -8,6 +8,8 @@ import FrequentlyAskedQuestions from "../Pages/FrequentlyAskedQuestions/Frequent
 import About from "../Pages/About/About/About";
 import CardDetails from "../Pages/Shared/CardDetails/CardDetails";
 import CheckOutPage from "../Pages/Shared/CheckOutPage/CheckOutPage";
+import Login from "../Pages/Login/Login/Login";
+import Register from "../Pages/Login/Register/Register";
 
 
 export const routes = createBrowserRouter([
@@ -49,7 +51,14 @@ export const routes = createBrowserRouter([
                 element: <CheckOutPage></CheckOutPage>,
             },
 
-
+            {
+                path: '/login',
+                element: <Login></Login>
+            },
+            {
+                path: '/register',
+                element: <Register></Register>
+            },
 
         ]
     }
