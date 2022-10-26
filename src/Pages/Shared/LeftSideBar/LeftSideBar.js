@@ -16,9 +16,9 @@ const LeftSideBar = () => {
             <h2 className='title text-3xl'>All Courses Name</h2>
             <div >
                 {
-                    categories.map(category => <p className='py-2 text-start ml-5' key={category.id}>
-                        <Link>{category.name}</Link>
+                    categories.map(category => <p className='py-2 text-start ml-5' key={category.id}><Link to={`/course-categories/${category.id}`}>{category.name}</Link>
                     </p>)
+
                 }
             </div>
         </div>

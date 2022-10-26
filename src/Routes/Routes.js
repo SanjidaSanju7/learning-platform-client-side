@@ -7,6 +7,7 @@ import Blog from "../Pages/Blog/Blog/Blog";
 import FrequentlyAskedQuestions from "../Pages/FrequentlyAskedQuestions/FrequentlyAskedQuestions";
 import About from "../Pages/About/About/About";
 
+
 export const routes = createBrowserRouter([
 
     {
@@ -33,6 +34,10 @@ export const routes = createBrowserRouter([
             {
                 path: '/blog',
                 element: <Blog></Blog>
+            },
+            {
+                path: '/course-categories/:id',
+                element: <Courses></Courses>
             }
 
         ]
