@@ -103,16 +103,17 @@ const Header = () => {
                             }
                         </Link>
                     </li>
-                    <li>
+                    <li >
                         <Link
                             to=""
                             aria-label="user photo"
                             title="user photo"
-                            className="font-bold tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
+                            className="font-bold tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400 "
                         >
                             {user?.photoURL ?
                                 <img style={{ height: '30px' }}
-                                    src={user?.photoURL} alt=''>
+                                    src={user?.photoURL} alt=''
+                                >
                                 </img>
                                 : <FaUser></FaUser>
                             }

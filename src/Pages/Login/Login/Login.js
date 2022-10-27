@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import image from '../../../assets/images/login.jpg'
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import { GoogleAuthProvider } from "firebase/auth";
@@ -12,6 +12,9 @@ const Login = () => {
     const [error, setError] = useState('');
     const navigate = useNavigate();
     const googleProvider = new GoogleAuthProvider();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || '/'
 
 
     const handleGoogleSignIn = () => {
@@ -39,7 +42,7 @@ const Login = () => {
                 console.log(user);
                 form.reset();
                 setError('');
-                navigate('/checkout')
+                navigate(from, { replace: true });
 
             })
             .catch(error => {

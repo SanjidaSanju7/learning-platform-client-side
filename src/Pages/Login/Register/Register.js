@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { FaGithub, FaGoogle } from 'react-icons/fa';
+
 import { Link } from 'react-router-dom';
 import image from '../../../assets/images/register.jpg'
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
@@ -8,7 +8,7 @@ const Register = () => {
 
 
     const [error, setError] = useState('');
-    const { createUser } = useContext(AuthContext);
+    const { createUser, updateUserProfile } = useContext(AuthContext);
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -24,12 +24,25 @@ const Register = () => {
                 const user = result.user;
                 console.log(user);
                 form.reset();
+                handleUpdateUserProfile(name, photoURL);
                 setError('');
             })
             .catch(error => {
                 console.error(error)
                 setError(error.message)
             });
+    }
+
+
+    const handleUpdateUserProfile = (name, photoURL) => {
+        const profile = {
+            displayName: name,
+            photoURL: photoURL
+        }
+
+        updateUserProfile(profile)
+            .then(() => { })
+            .catch(error => console.error(error));
     }
 
 
@@ -135,25 +148,6 @@ const Register = () => {
                                             className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-stone-900 transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none color-btn"
                                         >
                                             Register
-                                        </button>
-                                    </div>
-                                    <p className="text-xs text-gray-600 sm:text-sm text-center">
-                                        Register with social acoounts
-                                    </p>
-                                    <div className="mt-4 mb-2 sm:mb-4">
-                                        <button
-                                            type="submit"
-                                            className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-stone-900 transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none color-btn"
-                                        >
-                                            <FaGoogle /><h3 className='ml-2'>Sign up with Google</h3>
-                                        </button>
-                                    </div>
-                                    <div className="mt-4 mb-2 sm:mb-4">
-                                        <button
-                                            type="submit"
-                                            className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-stone-900 transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none color-btn"
-                                        >
-                                            <FaGithub /><h3 className='ml-2'>Sign up with Github</h3>
                                         </button>
                                     </div>
                                     <p className="text-xs text-gray-600 sm:text-sm text-center">
