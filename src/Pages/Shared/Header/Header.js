@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import './Header.css'
 import { Link } from 'react-router-dom';
-import { FaGraduationCap, FaUser } from "react-icons/fa";
+import { FaGraduationCap, FaMoon, FaSun, FaUser } from "react-icons/fa";
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const Header = () => {
@@ -122,7 +122,15 @@ const Header = () => {
                         </Link>
                     </li>
                     <li>
-                        <input type="checkbox" className="toggle toggle-md" checked />
+                        <label for="Toggle1" className="inline-flex items-center space-x-4 cursor-pointer dark:text-gray-100">
+                            <span><FaMoon /></span>
+                            <span className="relative">
+                                <input id="Toggle1" type="checkbox" className="hidden peer" />
+                                <div className="w-10 h-6 rounded-full shadow-inner  dark:bg-gray-400 peer-checked:dark:bg-violet-400 bg-rose-200 "></div>
+                                <div className="absolute inset-y-0 left-0 w-4 h-4 m-1 rounded-full shadow peer-checked:right-0 peer-checked:left-auto dark:bg-gray-800 bg-rose-900"></div>
+                            </span>
+                            <span className='text-warning'><FaSun /></span>
+                        </label>
                     </li>
                 </ul>
 
@@ -244,7 +252,18 @@ const Header = () => {
                                                 aria-label="Sign up"
                                                 title="Sign up"
                                             >
-                                                Sign up
+                                                {
+                                                    user?.uid ?
+                                                        <>
+                                                            {user?.displayName}
+                                                            <button onClick={handleLogOut} className="btn-sm bg-pink-800 rounded ml-3">Log out</button>
+                                                        </>
+                                                        :
+                                                        <>
+                                                            <Link to='/login'> Login</Link>
+                                                            <Link to='/register' className='ml-3'>Register</Link>
+                                                        </>
+                                                }
                                             </Link>
                                         </li>
                                     </ul>
