@@ -15,6 +15,7 @@ const CardDetails = () => {
                     <p>{description}</p>
                     <div className="card-actions justify-end">
                         <Link to='/checkout'><button className="btn btn-primary color-btn">Get Premium Access</button></Link>
+
                     </div>
                 </div>
             </div>

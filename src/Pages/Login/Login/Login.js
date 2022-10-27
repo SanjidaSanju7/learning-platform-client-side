@@ -3,7 +3,7 @@ import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import image from '../../../assets/images/login.jpg'
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
-import { GoogleAuthProvider } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 
 
 const Login = () => {
@@ -12,6 +12,7 @@ const Login = () => {
     const [error, setError] = useState('');
     const navigate = useNavigate();
     const googleProvider = new GoogleAuthProvider();
+    const githubProvider = new GithubAuthProvider();
     const location = useLocation();
 
     const from = location.state?.from?.pathname || '/'
@@ -21,12 +22,27 @@ const Login = () => {
         providerLogin(googleProvider)
             .then(result => {
                 const user = result.user;
+                navigate(from, { replace: true });
                 console.log(user);
             })
             .catch(error => {
-                console.error(error);
+                console.error(error)
+                setError(error.message)
             })
 
+    }
+
+    const handleGithubSignIn = () => {
+        providerLogin(githubProvider)
+            .then(result => {
+                const user = result.user;
+                navigate(from, { replace: true });
+                console.log(user);
+            })
+            .catch(error => {
+                console.error(error)
+                setError(error.message)
+            })
     }
 
 
@@ -135,7 +151,7 @@ const Login = () => {
                                         </button>
                                     </div>
                                     <div className="mt-4 mb-2 sm:mb-4">
-                                        <button
+                                        <button onClick={handleGithubSignIn}
                                             type="submit"
                                             className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-stone-900 transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none color-btn"
                                         >

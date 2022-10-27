@@ -92,7 +92,7 @@ const Header = () => {
                             {
                                 user?.uid ?
                                     <>
-                                        <span>{user?.displayName}</span>
+                                        {user?.displayName}
                                         <button onClick={handleLogOut} className="btn-sm bg-pink-800 rounded ml-3">Log out</button>
                                     </>
                                     :
@@ -108,18 +108,25 @@ const Header = () => {
                             to=""
                             aria-label="user photo"
                             title="user photo"
-                            className="font-bold tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400 "
+                            className="font-bold tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
                         >
                             {user?.photoURL ?
                                 <img style={{ height: '30px' }}
                                     src={user?.photoURL} alt=''
+
                                 >
                                 </img>
+
                                 : <FaUser></FaUser>
                             }
                         </Link>
                     </li>
+                    <li>
+                        <input type="checkbox" className="toggle toggle-md" checked />
+                    </li>
                 </ul>
+
+
 
                 {/* for mobile responsive */}
 
