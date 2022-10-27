@@ -34,4 +34,5 @@ The website has a stylish footer and some social icons.
 * Kitwind Component
 * Context API
 * Express Js
+* Environment Variables
 
