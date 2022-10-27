@@ -9,7 +9,7 @@ const CourseSummary = ({ course }) => {
 
     return (
 
-        <div className="flex flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-xl dark:text-gray-100 bg-rose-100 mb-5">
+        <div className="flex flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-xl dark:text-gray-100 bg-rose-100">
             <div className="flex space-x-4">
                 <img alt="" src="https://source.unsplash.com/100x100/?portrait" className="object-cover w-12 h-12 rounded-full shadow dark:bg-gray-500" />
                 <div className="flex flex-col space-y-1 font-semibold">
@@ -25,7 +25,7 @@ const CourseSummary = ({ course }) => {
                     {
                         description.length > 100 ?
                             <span>{description.slice(0, 100) + '...'}
-                                <Link className='text-primary' to={`/courses/${id}`}>Read More</Link></span>
+                                <Link className='text-primary'>Read More</Link></span>
                             :
                             <span>{description}</span>
                     }
@@ -43,9 +43,10 @@ const CourseSummary = ({ course }) => {
                         <h2 className=''> {rating}</h2>  <FaStar className='text-warning' />
                     </button>
                 </div>
-
             </div>
+            <Link to={`/courses/${id}`}><button className='btn w-full color-btn'>Course Details</button></Link>
         </div>
+
 
     );
 };
