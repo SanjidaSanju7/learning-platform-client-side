@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import './Header.css'
 import { Link } from 'react-router-dom';
-import { FaGraduationCap, FaMoon, FaSun, FaUser } from "react-icons/fa";
+import { FaGraduationCap, FaUser } from "react-icons/fa";
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const Header = () => {
@@ -25,7 +25,7 @@ const Header = () => {
                     title="academia"
                     className="inline-flex items-center"
                 >
-                    <FaGraduationCap className='text-5xl ' ></FaGraduationCap >
+                    <FaGraduationCap className='text-5xl dark: text-slate-900' ></FaGraduationCap >
                     <span className="ml-2 text-2xl font-bold tracking-wide text-gray-800 ">
                         ACADEMIA
                     </span>
@@ -87,13 +87,13 @@ const Header = () => {
                             to=""
                             aria-label="name"
                             title="name"
-                            className="font-bold tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
+                            className="font-bold tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                         >
                             {
                                 user?.uid ?
                                     <>
                                         {user?.displayName}
-                                        <button onClick={handleLogOut} className="btn-sm bg-pink-800 rounded ml-3">Log out</button>
+                                        <button onClick={handleLogOut} className="btn-sm bg-rose-100 rounded ml-3">Log out</button>
                                     </>
                                     :
                                     <>
@@ -120,17 +120,6 @@ const Header = () => {
                                 : <FaUser></FaUser>
                             }
                         </Link>
-                    </li>
-                    <li>
-                        <label for="Toggle1" className="inline-flex items-center space-x-4 cursor-pointer dark:text-gray-100">
-                            <span><FaMoon /></span>
-                            <span className="relative">
-                                <input id="Toggle1" type="checkbox" className="hidden peer" />
-                                <div className="w-10 h-6 rounded-full shadow-inner  dark:bg-gray-400 peer-checked:dark:bg-violet-400 bg-rose-200 "></div>
-                                <div className="absolute inset-y-0 left-0 w-4 h-4 m-1 rounded-full shadow peer-checked:right-0 peer-checked:left-auto dark:bg-gray-800 bg-rose-900"></div>
-                            </span>
-                            <span className='text-warning'><FaSun /></span>
-                        </label>
                     </li>
                 </ul>
 

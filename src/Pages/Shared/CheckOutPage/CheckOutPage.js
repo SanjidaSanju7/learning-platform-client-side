@@ -9,7 +9,7 @@ const CheckOutPage = () => {
 
     return (
 
-        <div className="relative w-full h-full">
+        <div className="relative w-full h-full dark:bg-slate-50">
             <div className="absolute hidden w-full bg-gray-50 lg:block h-96" />
             <div className="relative px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
                 <div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
@@ -18,7 +18,7 @@ const CheckOutPage = () => {
                             <svg
                                 viewBox="0 0 52 24"
                                 fill="currentColor"
-                                className="absolute top-0 left-0 z-0 hidden w-32 -mt-8 -ml-20 text-gray-400 lg:w-32 lg:-ml-28 lg:-mt-10 sm:block"
+                                className="absolute top-0 left-0 z-0 hidden w-32 -mt-8 -ml-20 text-gray-400 dark:text-stone-900 lg:w-32 lg:-ml-28 lg:-mt-10 sm:block"
                             >
                                 <defs>
                                     <pattern
@@ -41,7 +41,7 @@ const CheckOutPage = () => {
                         </span>{' '}
                         for everyone
                     </h2>
-                    <p className="text-base text-black-700 md:text-lg">
+                    <p className="text-base text-black-700 md:text-lg dark:text-stone-900">
                         Learn to code, gain a new skill, get a new job. Whatever your goal we will get you there. Thank you for choosing us!!!
                     </p>
                 </div>
